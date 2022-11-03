@@ -20,15 +20,15 @@ func SearchBookService(book_name string) ([]Book, string, bool) {
 	var isBookFound bool = false
 	var messageErr string = "It looks that the book you are looking for is not in our collection.\nTry looking for another book."
 
-		for _, word := range splitContent {
-			// loop all the book from the collection
-			for _, book := range globalBook.Books {
-				// check if the "searched string" match with the "book title"
-				if strings.Contains(strings.ToLower(book.Title), strings.ToLower(word)) && !isBookAlreadyFound(searchedBook, book.Title) {
-					isBookFound = true
-					searchedBook = append(searchedBook, book)
-				}
+	for _, word := range splitContent {
+		// loop all the book from the collection
+		for _, book := range globalBook.Books {
+			// check if the "searched string" match with the "book title"
+			if strings.Contains(strings.ToLower(book.Title), strings.ToLower(word)) && !isBookAlreadyFound(searchedBook, book.Title) {
+				isBookFound = true
+				searchedBook = append(searchedBook, book)
 			}
+		}
 	}
 
 	return searchedBook, messageErr, isBookFound

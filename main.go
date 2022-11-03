@@ -21,16 +21,11 @@ func main() {
 		utils.ClearScreen()
 
 		switch selected_command {
-		case 1:
-			choices.ChoiceOne() // search book
-		case 2:
-			choices.ChoiceTwo() // borrow a book
-		case 3:
-			choices.ChoiceThree() // return a book
-		case 4:
-			choices.ChoiceFour() // list all borrowed book
-		case 5:
-			choices.ChoiceFive() // list all overdue book
+		case 1: choices.ChoiceOne() // search book
+		case 2: choices.ChoiceTwo() // borrow a book
+		case 3: choices.ChoiceThree() // return a book
+		case 4: choices.ChoiceFour() // list all borrowed book
+		case 5: choices.ChoiceFive() // list all overdue book
 		}
 	}
 }

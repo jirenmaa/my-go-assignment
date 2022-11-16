@@ -2,8 +2,7 @@ package books
 
 // list every book in the collections
 func ListBookService() {
-	var bookList []Book = bookCollections.Books
-	RenderBook(bookList)
+	RenderBook(bookCollections.Books)
 }
 
 // list every borrowed book in the collections

@@ -1,4 +1,4 @@
-package commands
+package choices
 
 import (
 	"bufio"
@@ -6,9 +6,8 @@ import (
 	"os"
 )
 
+// getting input from user that used whitespaces
 func getScanner(content string) string {
-	// getting input from user that used whitespaces
-
 	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Print(content)
 

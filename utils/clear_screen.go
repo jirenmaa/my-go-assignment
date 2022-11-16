@@ -5,7 +5,6 @@ import (
 	"os/exec"
 )
 
-// CLEAR THE PREVIEWS TEXT
 func ClearScreen() {
 	cmd := exec.Command("clear")
 	cmd.Stdout = os.Stdout

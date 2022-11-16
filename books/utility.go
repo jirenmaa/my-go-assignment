@@ -7,7 +7,7 @@ import (
 	"github.com/olekukonko/tablewriter"
 )
 
-// RENDER GIVEN BOOK DATA IN TABLE
+// create a table view of the book collection
 func RenderBook(books []Book) {
 	var tableHeader []string = []string{"isbn", "title", "author", "pages", "status", "borrower"}
 
@@ -20,7 +20,7 @@ func RenderBook(books []Book) {
 	table.Render()
 }
 
-// FILTER GIVEN BOOK DATA WITH GIVEN CONDITION
+// filter the provided book selection based on condition
 func BookFilter(books []Book, condition func(Book) bool) []Book {
 	result := []Book{}
 

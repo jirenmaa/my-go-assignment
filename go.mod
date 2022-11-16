@@ -1,4 +1,4 @@
-module github.com/jirenmaa/gundar-go-library
+module github.com/jirenmaa/gunadarma/gundar-go-library
 
 go 1.17
 

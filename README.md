@@ -5,10 +5,6 @@
     3. FAJAR
     4. ZAKY
 
-# INSTALLING PACKAGES
-
-    $ go install
-
 # RUNNING THE PROGRAM
 
     $ go run main.go

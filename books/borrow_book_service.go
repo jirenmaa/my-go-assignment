@@ -11,12 +11,12 @@ func BorrowBookService(isbn string) (string, bool) {
 		panic(err)
 	}
 
-	for index, book := range globalBook.Books {
+	for index, book := range bookCollections.Books {
 		// user can only borrow a book if only the book status is Available
 		if book.Status == "Available" && book.ISBN == isbn {
 			isBookBorrowed = false
-			globalBook.Books[index].Status = "Borrowed"
-			globalBook.Books[index].Borrower = hostname
+			bookCollections.Books[index].Status = "Borrowed"
+			bookCollections.Books[index].Borrower = hostname
 			break
 		}
 	}

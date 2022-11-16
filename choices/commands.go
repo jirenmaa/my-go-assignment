@@ -1,11 +1,11 @@
-package commands
+package choices
 
 import (
 	"fmt"
 	"strconv"
 )
 
-func ShowAllAvailableCommands() int {
+func ShowAvailableCommands() int {
 	var command string
 
 	fmt.Println("=================================")
@@ -29,16 +29,4 @@ func ShowAllAvailableCommands() int {
 	}
 
 	return value
-}
-
-func ChooseBookToBorrow() string {
-	return InputTemplate("Input book ISBN to borrow $ ")
-}
-
-func ChooseBookToReturn() string {
-	return InputTemplate("Input book ISBN to return $ ")
-}
-
-func SearchForBook() string {
-	return InputTemplate("Input book name $ ")
 }

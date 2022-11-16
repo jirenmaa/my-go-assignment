@@ -3,11 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/jirenmaa/gundar-go-library/modules/utils"
+	"github.com/jirenmaa/gunadarma/gundar-go-library/utils"
 
-	"github.com/jirenmaa/gundar-go-library/modules/books"
-	"github.com/jirenmaa/gundar-go-library/modules/choices"
-	"github.com/jirenmaa/gundar-go-library/modules/commands"
+	"github.com/jirenmaa/gunadarma/gundar-go-library/books"
+	"github.com/jirenmaa/gunadarma/gundar-go-library/choices"
 )
 
 func main() {
@@ -17,15 +16,15 @@ func main() {
 		books.ListBookService()
 		fmt.Print("\n")
 
-		selected_command := commands.ShowAllAvailableCommands()
+		selected_command := choices.ShowAvailableCommands()
 		utils.ClearScreen()
 
 		switch selected_command {
-		case 1: choices.ChoiceOne() // search book
-		case 2: choices.ChoiceTwo() // borrow a book
-		case 3: choices.ChoiceThree() // return a book
-		case 4: choices.ChoiceFour() // list all borrowed book
-		case 5: choices.ChoiceFive() // list all overdue book
+		case 1: choices.SearchForBook() // search book
+		case 2: choices.ListBookCollection() // borrow a book
+		case 3: choices.ReturnBorrowedBook() // return a book
+		case 4: choices.ListBorrowedBookCollection() // list all borrowed book
+		case 5: choices.ListOverdueBookCollection() // list all overdue book
 		}
 	}
 }

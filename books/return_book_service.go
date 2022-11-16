@@ -11,12 +11,12 @@ func ReturnBookService(isbn string) (string, bool) {
 		panic(err)
 	}
 
-	for index, book := range globalBook.Books {
-		// check if the borrower are actually the user and not the other
+	for index, book := range bookCollections.Books {
+		// verify that the borrower is the actual user
 		if book.Borrower == hostname && book.ISBN == isbn {
 			isReturned = true
-			globalBook.Books[index].Borrower = "------"
-			globalBook.Books[index].Status = "Available"
+			bookCollections.Books[index].Borrower = "------"
+			bookCollections.Books[index].Status = "Available"
 			break
 		}
 	}

@@ -1,4 +1,4 @@
-package choices
+package utils
 
 import (
 	"bufio"
@@ -7,7 +7,7 @@ import (
 )
 
 // getting input from user that used whitespaces
-func getScanner(content string) string {
+func GetScanner(content string) string {
 	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Print(content)
 
@@ -19,6 +19,6 @@ func getScanner(content string) string {
 }
 
 func InputTemplate(content string) string {
-	command := getScanner(content)
+	command := GetScanner(content)
 	return command
 }

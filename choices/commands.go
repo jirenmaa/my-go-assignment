@@ -17,6 +17,7 @@ func ShowAvailableCommands() int {
 	fmt.Print(" [3] 📘 Return Borrowed Book \n")
 	fmt.Print(" [4] 📙 Show All Borrowed Book \n")
 	fmt.Print(" [5] 📕 Show All Overdue Book \n")
+	fmt.Print(" [6] 🎒 Add New Book\n")
 	fmt.Print("\n")
 	fmt.Println("=================================")
 

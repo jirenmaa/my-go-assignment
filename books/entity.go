@@ -13,6 +13,8 @@ type Book struct {
 	Publisher   string `json:"publisher"`
 	Pages       int    `json:"pages"`
 	Description string `json:"description"`
-	Status      string `json:"status"`
-	Borrower    string `json:"borrower"`
+	Status      string
+	Deadline    int
+	Borrower    string
+	DueDate     string
 }

@@ -17,6 +17,7 @@ func ReturnBookService(isbn string) (string, bool) {
 			isReturned = true
 			bookCollections.Books[index].Borrower = "------"
 			bookCollections.Books[index].Status = "Available"
+			bookCollections.Books[index].Deadline = 0
 			break
 		}
 	}

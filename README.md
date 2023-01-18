@@ -1,3 +1,3 @@
 # RUNNING THE PROGRAM
 
-    $ go run main.go 
+    go run main.go

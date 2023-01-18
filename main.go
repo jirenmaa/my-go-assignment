@@ -3,30 +3,36 @@ package main
 import (
 	"fmt"
 
-	"github.com/jirenmaa/gunadarma/gundar-go-library/utils"
-
-	"github.com/jirenmaa/gunadarma/gundar-go-library/books"
-	"github.com/jirenmaa/gunadarma/gundar-go-library/choices"
+	books "github.com/jirenmaa/gunadarma/gundar-go-library/books"
+	choice "github.com/jirenmaa/gunadarma/gundar-go-library/choices"
+	util "github.com/jirenmaa/gunadarma/gundar-go-library/utils"
 )
 
 func main() {
-	// books.InitBookServiceArrs()
-	books.InitBookServiceJSON()
+	var collections books.Books
+
+	collections.Configure("json")
 
 	for {
-		books.ListBookService()
-		fmt.Print("\n")
+		collections.DisplayBookshelf(collections.Books)
+		fmt.Println()
 
-		selected_command := choices.ShowAvailableCommands()
-		utils.ClearScreen()
+		var prompt int = choice.DisplayBookShelfMenu()
+		util.ClearScreen()
 
-		switch selected_command {
-		case 1: choices.SearchForBook()              // search book
-		case 2: choices.BorrowBook()                 // borrow a book
-		case 3: choices.ReturnBorrowedBook()         // return a book
-		case 4: choices.ListBorrowedBookCollection() // list all borrowed book
-		case 5: choices.ListOverdueBookCollection()  // list all overdue book
-		case 6: choices.AddBookToCollection()
+		switch prompt {
+		case 1:
+			choice.ChoiceSearchBook(&collections)
+		case 2:
+			choice.ChoiceBorrowBook(&collections)
+		case 3:
+			choice.ChoiceReturnBook(&collections)
+		case 4:
+			choice.ChoiceAddNewBook(&collections)
+		case 5:
+			choice.ChoiceDisplayBorrowedBooks(&collections)
+		case 6:
+			choice.ChoiceDisplayOverduesBooks(&collections)
 		}
 	}
 }

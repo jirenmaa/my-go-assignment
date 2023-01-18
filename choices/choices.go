@@ -1,89 +1,127 @@
-package choices
+package choices1
 
 import (
 	"fmt"
 
-	"github.com/jirenmaa/gunadarma/gundar-go-library/utils"
-
-	"github.com/jirenmaa/gunadarma/gundar-go-library/books"
+	books "github.com/jirenmaa/gunadarma/gundar-go-library/books"
+	util "github.com/jirenmaa/gunadarma/gundar-go-library/utils"
 )
 
-func SearchForBook() {
-	books.ListBookService()
-	fmt.Print("\n")
-	selected_book := utils.InputTemplate("Input book name $ ")
-
-	book, msg, isFound := books.SearchBookService(selected_book)
-
-	if !isFound {
-		fmt.Printf("\n%s", msg)
-	} else {
-		books.RenderBook(book)
-	}
-	fmt.Scanln()
-	utils.ClearScreen()
-}
-
-func BorrowBook() {
+func ChoiceSearchBook(collections *books.Books) {
 	for {
-		books.ListBookService()
-		fmt.Print("\n")
-		fmt.Println("(type \"q\" to quit)")
+		collections.DisplayBookshelf(collections.Books)
 
-		selected_book := utils.InputTemplate("Input book ISBN to borrow $ ")
-		if selected_book == "q" {
+		fmt.Println("\n(type \"q\" to quit)")
+
+		var prompt string = util.InputTemplate("Enter Book Name $ ")
+		if prompt == "q" { // quit
 			break
 		}
 
-		duration := utils.InputTemplate("Duration (number in days) $ ")
-		msg, err := books.BorrowBookService(selected_book, duration)
+		books, msg, found := collections.SearchBookAction(prompt)
 
-		if err {
+		if !found {
+			fmt.Printf("\n%s", msg)
+		} else {
+			fmt.Println()
+			// display all founded book that has similar to the prompt
+			collections.DisplayBookshelf(books)
+			fmt.Print("\n(press any \"key\" to continue)")
+		}
+
+		fmt.Scanln()
+		util.ClearScreen()
+	}
+
+	util.ClearScreen()
+}
+
+func ChoiceBorrowBook(collections *books.Books) {
+	for {
+		collections.DisplayBookshelf(collections.Books)
+
+		fmt.Println("\n(type \"q\" to quit)")
+
+		var prompt string = util.InputTemplate("Enter ISBN $ ")
+		if prompt == "q" { // quit
+			break
+		}
+
+		duration := util.InputTemplate("Duration (number in days) $ ")
+		msg, err := collections.BorrowBookAction(prompt, duration)
+		if err != nil {
 			fmt.Printf("\n%s", msg)
 			fmt.Scanln()
 		}
 
-		utils.ClearScreen()
+		util.ClearScreen()
 	}
-	utils.ClearScreen()
+
+	util.ClearScreen()
 }
 
-func ReturnBorrowedBook() {
-	books.ListBookService()
-	fmt.Print("\n")
-	selected_book := utils.InputTemplate("Input book ISBN to return $ ")
+func ChoiceReturnBook(collections *books.Books) {
+	for {
+		collections.DisplayBookshelf(collections.Books)
 
-	msg, err := books.ReturnBookService(selected_book)
-	if !err {
-		fmt.Printf("\n%s", msg)
+		fmt.Println("\n(type \"q\" to quit)")
+
+		var prompt string = util.InputTemplate("Enter ISBN $ ")
+		if prompt == "q" { // quit
+			break
+		}
+
+		msg, err := collections.ReturnBookAction(prompt)
+		if err != nil {
+			fmt.Printf("\n%s", msg)
+			fmt.Scanln()
+		}
+
+		util.ClearScreen()
+	}
+
+	util.ClearScreen()
+}
+
+func ChoiceAddNewBook(collections *books.Books) {
+	for {
+		msg, err := collections.CreateBookAction()
+		if err != nil && msg == "q" {
+			break
+		}
+
+		fmt.Println(msg)
 		fmt.Scanln()
+		util.ClearScreen()
 	}
-	utils.ClearScreen()
+
+	util.ClearScreen()
 }
 
-func AddBookToCollection() {
-	msg, err := books.CreateBookService()
-	if !err {
-		fmt.Printf("\n%s", msg)
+func ChoiceDisplayBorrowedBooks(collections *books.Books) {
+	for {
+		collections.DisplayBookshelf(collections.Books)
+
+		fmt.Println("\n(type \"q\" to quit)")
+
+		var prompt string = util.InputTemplate("Enter Borrower Name $ ")
+		if prompt == "q" { // quit
+			break
+		}
+
+		collections.ListBorrowedBookAction(prompt)
+		fmt.Print("\n(press any \"key\" to continue)")
 		fmt.Scanln()
+		util.ClearScreen()
 	}
-	utils.ClearScreen()
+
+	util.ClearScreen()
 }
 
-func ListBorrowedBookCollection() {
-	books.ListBookService()
-	fmt.Print("\n")
-	borrower := utils.InputTemplate("Input borrower name $ ")
+func ChoiceDisplayOverduesBooks(collections *books.Books) {
+	collections.ListOverdueBookAction()
 
-	books.ListBorrowedBookService(borrower)
-	fmt.Println("\n(press any \"key\" to continue)")
+	fmt.Print("\n(press any \"key\" to continue)")
 	fmt.Scanln()
-	utils.ClearScreen()
-}
-
-func ListOverdueBookCollection() {
-	books.ListOverdueBookService()
-	fmt.Print("\n")
-	fmt.Scanln()
-	utils.ClearScreen()
+	util.ClearScreen()
 }
